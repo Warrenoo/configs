@@ -1,0 +1,10 @@
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
+[user]
+	name = 沈汪洋
+	email = 541991a@gmail.com
+[alias]
+  st = status
+  ci = commit
+  df = diff

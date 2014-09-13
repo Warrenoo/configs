@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+current_path="${PWD}"
+
+echo "Installing on-my-zhs"
+if [[ -e $HOME/.oh-my-zsh ]]; then
+    echo "oh-my-zsh already exists" 
+else
+    git clone https://github.com/robbyrussell/oh-my-zsh.git "$HOME/.oh-my-zsh"
+fi
+
+chsh -s `which zsh`
+rm  $HOME/.zshrc
+ln -s $current_path/zshrc $HOME/.zshrc
+rm $HOME/.gitconfig
+ln -s $current_path/gitconfig $HOME/.gitconfig
+rm $HOME/.vimrc
+ln -s $current_path/vimrc $HOME/.vimrc
