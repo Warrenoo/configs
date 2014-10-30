@@ -18,8 +18,8 @@ filetype off
 set list listchars=tab:»·,trail:·
 
 " 复制粘贴快捷键
-map <C-c> "+y
-map <C-v> "+p
+vmap <C-c> :w !pbcopy<cr><cr>
+nmap <C-v> :r !pbpaste<cr><cr>
 " 左下角显示当前vim模式
 set showmode
 
