@@ -8,3 +8,6 @@
   st = status
   ci = commit
   df = diff
+  dd = diff
+[push]
+	default = matching
