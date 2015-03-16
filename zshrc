@@ -1,15 +1,14 @@
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" 
 
-export PATH=$PATH:/usr/local/mysql/bin
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+
+export PATH="$PATH:/usr/local/mysql/bin"
 export DYLD_LIBRARY_PATH="$DYLD_LIBRARY_PATH:/usr/local/mysql/lib/"
 export PATH="/usr/local/mongodb/bin:$PATH"
 
 alias @ps="python -m SimpleHTTPServer"
-alias @ssh244="ssh wangyang.shen@172.20.2.244"
 alias @tail="tail -n 50 -f"
-alias @gems="vi ~/.rvm/gems/ruby-1.9.3-p547@global/gems/"
 # toggle iTerm Dock icon
 # add this to your .bash_profile or .zshrc
 function toggleitem() {
@@ -84,7 +83,6 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="/Users/swy/.rvm/gems/ruby-1.9.3-p547/bin:/Users/swy/.rvm/gems/ruby-1.9.3-p547@global/bin:/Users/swy/.rvm/rubies/ruby-1.9.3-p547/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/mysql/bin:/usr/local/mysql/bin:/Users/swy/.rvm/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
