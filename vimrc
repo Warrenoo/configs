@@ -174,15 +174,14 @@ set laststatus=2
 let g:airline#extensions#tabline#enabled = 1
 " tabline中buffer显示编号
 let g:airline#extensions#tabline#buffer_nr_show = 1
-" vim-powerline symbols
-let g:airline_left_sep          = '⮀'
-let g:airline_left_alt_sep      = '⮁'
-let g:airline_right_sep         = '⮂'
-let g:airline_right_alt_sep     = '⮃'
-let g:airline_branch_prefix     = '⭠'
-let g:airline_readonly_symbol   = '⭤'
-let g:airline_linecolumn_prefix = '⭡'
+
+" powerline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
 let g:airline_theme             = 'solarized'
+
 " 映射切换buffer的键位
 nnoremap bh :bp<CR>
 nnoremap bl :bn<CR>
@@ -198,7 +197,6 @@ nnoremap bd :Bd<CR>
 Bundle 'mileszs/ack.vim.git'
 Bundle 'dyng/ctrlsf.vim'
 let g:ctrlsf_auto_close = 0
-let g:ctrlsf_open_left = 0
 
 Bundle 'msanders/snipmate.vim'
 " WinManager设置
@@ -276,5 +274,15 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
+Bundle 'junegunn/vim-easy-align'
+" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+vmap <Enter> <Plug>(EasyAlign)
+" " Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
 " theme主题
 colorscheme monokai
+
+if has("gui_running")
+    set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h14 //powerline字体
+endif

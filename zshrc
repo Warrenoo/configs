@@ -1,14 +1,12 @@
 # Path to your oh-my-zsh installation.
 
+export ZSH=$HOME/.oh-my-zsh
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
-export PATH="$PATH:/usr/local/mysql/bin"
-export DYLD_LIBRARY_PATH="$DYLD_LIBRARY_PATH:/usr/local/mysql/lib/"
-export PATH="/usr/local/mongodb/bin:$PATH"
-
 alias @ps="python -m SimpleHTTPServer"
 alias @tail="tail -n 50 -f"
+
 # toggle iTerm Dock icon
 # add this to your .bash_profile or .zshrc
 function toggleitem() {
@@ -77,7 +75,7 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(rails3 rails git textmate ruby rvm gem git github brew bundler textmate pow)
+plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
