@@ -108,10 +108,10 @@ set hidden
 set cursorline
 "set cursorcolumn
 
+set gfn=Monaco:h16
 if has("gui_running")
   colorscheme desert
   set bs=2
-  set gfn=Monaco:h16
   set shell=/bin/zsh
 endif
 
@@ -279,6 +279,8 @@ Bundle 'junegunn/vim-easy-align'
 vmap <Enter> <Plug>(EasyAlign)
 " " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+
+Bundle 'tpope/vim-cucumber.git'
 
 " theme主题
 colorscheme monokai

@@ -2,10 +2,15 @@
 
 export ZSH=$HOME/.oh-my-zsh
 export PATH="$HOME/.rbenv/bin:$PATH"
+#export PATH="$PATH:$HOME/Library/Redis/src"
 eval "$(rbenv init -)"
 
 alias @ps="python -m SimpleHTTPServer"
 alias @tail="tail -n 50 -f"
+
+export DOCKER_TLS_VERIFY=1
+export DOCKER_HOST=tcp://192.168.59.103:2376
+export DOCKER_CERT_PATH=/Users/warrenoo/.boot2docker/certs/boot2docker-vm
 
 # toggle iTerm Dock icon
 # add this to your .bash_profile or .zshrc
