@@ -1,77 +1,93 @@
-set rtp+=~/.vim/bundle/vundle/
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vundle
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set nocompatible
+filetype off
 
-"filetype plugin indent on
-"syntax on
-syntax enable
-filetype plugin on
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
+Plugin 'Shougo/unite.vim'
+Plugin 'Shougo/vimproc.vim'
+Plugin 'Shougo/vimshell.vim'
+Plugin 'Shougo/neocomplete.vim'
+Plugin 'Shougo/neosnippet'
 
-call vundle#rc()
+Plugin 'tpope/vim-endwise'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-bundler'
+Plugin 'tpope/vim-markdown'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat'
+" Plugin 'tpope/vim-vividchalk'
 
-" leader键
-let mapleader=","
-let g:mapleader=","
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'vim-scripts/matchit.zip'
+Plugin 'vim-scripts/tComment'
+Plugin 'bling/vim-airline'
+Plugin 'scrooloose/nerdtree'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'scrooloose/syntastic'
+Plugin 'junegunn/vim-easy-align'
+Plugin 'majutsushi/tagbar'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'mhinz/vim-signify'
+Plugin 'honza/vim-snippets'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'mbbill/undotree'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'gregsexton/gitv'
+Plugin 'elixir-lang/vim-elixir'
+Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'slim-template/vim-slim'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'fatih/vim-go'
+Plugin 'moll/vim-bbye.git'
+Plugin 'vim-scripts/The-NERD-Commenter'
+call vundle#end()
 
-" history存储容量
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+syntax on
+filetype plugin indent on
+compiler ruby
+scriptencoding utf-8
+
+set autoindent
+set hlsearch
+set incsearch
+set number
+set ruler
+set showcmd
+set expandtab
+set splitright
+set diffopt+=vertical
+set tabstop=2 shiftwidth=2 softtabstop=2
+set list listchars=tab:»▸,trail:·,nbsp:·
+set laststatus=2
+set wildmenu
+set wildmode=list:longest,list:full
+set encoding=utf-8
+set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1
+set termencoding=utf-8
+set tags=./tags;$HOME
+set nobackup
+set noswapfile
 set history=2000
-
-" 文件修改之后自动载入。
-set autoread
-set nocompatible               " be iMproved
-set encoding=utf8
-
-" 用于Macvim输入法切换问题
-"set noimdisable
-"autocmd! InsertLeave * set imdisable|set iminsert=0
-"autocmd! InsertEnter * set noimdisable|set iminsert=0
-
-" 空格后会有提示符
-set list listchars=tab:»·,trail:·
-
-" 复制粘贴快捷键
-vmap <C-c> :w !pbcopy<cr><cr>
-nmap <C-v> :r !pbpaste<cr><cr>
-
-" 左下角显示当前vim模式
-set showmode
-
-" 实现(、[、{、"、'  输入后自动补全右边部分，光标也会位于中间位置。
-"inoremap ( ()<ESC>i
-"inoremap [ []<ESC>i
-"inoremap { {}<ESC>i
-"inoremap < <><ESC>i
-"inoremap " ""<ESC>i
-"inoremap ' ''<ESC>i
-
-" let Vundle manage Vundle
-Bundle 'gmarik/vundle'
+" set autochdir                   " 自动设置目录为正在编辑的文件所在的目录
+" 设置在状态行显示的信息
+set statusline=\ %<%F[%1*%M%*%n%R%H]%=\ %y\ %0(%{&fileformat}\ %{&encoding}\ %c:%l/%L%)\ 
 
 "可以在buffer的任何地方使用鼠标
 set mouse=n
 set selection=exclusive
 set selectmode=mouse,key
-
-"设置当文件被外部改变的时侯自动读入文件
-if exists("&autoread")
-    set autoread
-endif
-
-" 1 tab to 2 space for ruby
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
-set expandtab
-set ruler               "右下角显示光标位置"
-set hlsearch        " 高亮显示搜索结果"
-set incsearch       " 及时输入查询
-set autochdir                   " 自动设置目录为正在编辑的文件所在的目录"
-set nu
-
-" 设置在状态行显示的信息
-set statusline=\ %<%F[%1*%M%*%n%R%H]%=\ %y\ %0(%{&fileformat}\ %{&encoding}\ %c:%l/%L%)\ 
-
+" 左下角显示当前vim模式
+set showmode
 " 代码折叠
 set foldenable
-
 "" 折叠方法
 "" manual    手工折叠
 "" indent    使用缩进表示折叠
@@ -82,186 +98,36 @@ set foldenable
 "" 使用syntax方式的代码折叠会导致操作卡顿，慎用！！！
 set foldmethod=syntax
 set foldlevel=99
-nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR> "空格控制折叠"
+"设置当文件被外部改变的时侯自动读入文件
+if exists("&autoread")
+  set autoread
+endif
 
-" 缩进配置
-set smartindent   " Smart indent
-set autoindent    " 打开自动缩进
-
-" tab相关变更
-set tabstop=2     " 设置Tab键的宽度        [等同的空格个数]
-set shiftwidth=2  " 每一次缩进对应的空格数
-set softtabstop=2 " 按退格键时可以一次删掉2个空格
-set smarttab      " insert tabs on the start of a line according to
-" shiftwidth, not tabstop 按退格键时可以一次删掉 2个空格
-set expandtab     " 将Tab自动转化成空格    [需要输入真正的Tab键时，使用
-" Ctrl+V + Tab]
-set shiftround    " 缩进时，取整 use multiple of shiftwidth when indenting
+if exists('+colorcolumn')
+  set colorcolumn=80
+else
+  au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+endif
 
 " input source improve for gui vim
 if has("gui_running")
   set noimdisable
   set imi=2
   set ims=2
-endif
-
-set noswapfile
-"in order to switch between buffers with unsaved change
-set hidden
-
-" hightlight col and line
-set cursorline
-"set cursorcolumn
-
-set gfn=Monaco:h16
-if has("gui_running")
-  colorscheme molokai
   set bs=2
   set shell=/bin/zsh
+  colorscheme molokai
 endif
 
-" Bundle Plugin here for Ruby on Rails
-" git
-Bundle 'tpope/vim-fugitive'
-" ruby command for rvm
-Bundle 'tpope/vim-rvm'
-" quickly move cursor, try ,,w 
-Bundle 'Lokaltog/vim-easymotion'
-" quickly write HTML, just like zencoding but simple engough
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-let g:sparkupNextMapping= "<c-m>"
-" power vim plugin for rails
-Bundle 'tpope/vim-rails.git'
-" vim rails syntax complete, try ctrl+x ctrl+u
-set completefunc=syntaxcomplete#Complete
-" quickly comment your code, try ,cc on selected line
-Bundle 'vim-scripts/The-NERD-Commenter'
-" indent guides
-let g:indent_guides_guide_size = 1
-Bundle 'nathanaelkane/vim-indent-guides'
-" indent guides shortcut
-map <silent><F7>  <leader>ig
-Bundle 'terryma/vim-multiple-cursors.git'
+autocmd BufNewFile,BufRead *.html.erb set filetype=html.eruby
 
-" file tree like something called IDE
-Bundle 'scrooloose/nerdtree'
-let NERDTreeAutoCenter=1
-let NERDTreeWinPos='left'
-map <silent><F8> :NERDTree<CR>
-" slim template support
-Bundle 'slim-template/vim-slim.git'
-" coffeescript
-Bundle 'kchmck/vim-coffee-script'
-" basic dependence
-Bundle 'L9'
-" quickly search file(s), use ctrl+p, F5 refresh
-Bundle 'kien/ctrlp.vim'
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-" ctrl+o for LRU buffer
-map <c-o> :CtrlPBuffer<CR>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" key mappings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-Bundle "scrooloose/nerdcommenter.git"
-
-
-" sass highlight
-Bundle 'JulesWang/css.vim'
-Bundle 'cakebaker/scss-syntax.vim'
-
-Bundle 'bling/vim-airline.git'
-" airline设置
-set laststatus=2
-" 开启tabline
-let g:airline#extensions#tabline#enabled = 1
-" tabline中buffer显示编号
-let g:airline#extensions#tabline#buffer_nr_show = 1
-
-" powerline symbols
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_theme             = 'solarized'
-
-" 映射切换buffer的键位
-nnoremap bh :bp<CR>
-nnoremap bl :bn<CR>
-
-Bundle 'vim-scripts/winmanager.git'
-set iskeyword+=-
-
-Bundle 'moll/vim-bbye.git'
-" Bbye设置
-" 由于原生的:bd在删除当前buffer时会将整个窗口关闭，故使用Bbye的:Bd
-nnoremap bd :Bd<CR>
-
-Bundle 'mileszs/ack.vim.git'
-Bundle 'dyng/ctrlsf.vim'
-let g:ctrlsf_auto_close = 0
-
-Bundle 'msanders/snipmate.vim'
-" WinManager设置
-" NERD_Tree集成到WinManager
-let g:NERDTree_title="[NERDTree]" 
-function! NERDTree_Start()
-    exec 'NERDTree'
-endfunction
- 
-function! NERDTree_IsValid()
-    return 1
-endfunction
-
-Bundle 'tpope/vim-surround.git'
-
-",# Surround a word with #{ruby interpolation}
-map ,# ysiw#
-vmap ,# c#{<C-R>"}<ESC>
-
-" ," Surround a word with "quotes"
-map ," ysiw"
-vmap ," c"<C-R>""<ESC>
-
-" ,' Surround a word with 'single quotes'
-map ,' ysiw'
-vmap ,' c'<C-R>"'<ESC>
-
-" ,) or ,( Surround a word with (parens)
-" The difference is in whether a space is put in
-map ,( ysiw(
-map ,) ysiw)
-vmap ,( c( <C-R>" )<ESC>
-vmap ,) c(<C-R>")<ESC>
-
-" ,[ Surround a word with [brackets]
-map ,] ysiw]
-map ,[ ysiw[
-vmap ,[ c[ <C-R>" ]<ESC>
-vmap ,] c[<C-R>"]<ESC>
-
-" ,{ Surround a word with {braces}
-map ,} ysiw}
-map ,{ ysiw{
-vmap ,} c{ <C-R>" }<ESC>
-vmap ,{ c{<C-R>"}<ESC>
-
-map ,` ysiw`
-
-" 键盘映射，同时加入防止因winmanager和nerdtree冲突而导致空白页的语句
-nmap wm :if IsWinManagerVisible() <BAR> WMToggle<CR> <BAR> else <BAR> WMToggle<CR>:q<CR> endif <CR><CR>
-" 设置winmanager的宽度，默认为25
-let g:winManagerWidth=35
-
-" 窗口布局
-let g:winManagerWindowLayout='NERDTree'
-
-" 如果所有编辑文件都关闭了，退出vim
-let g:persistentBehaviour=0
-
-
-" 退格键设置
-set backspace=indent,eol,start
+" leader键
+let mapleader=" "
+let g:mapleader=" "
 
 " 开始结束键修改为H和L
 noremap H ^
@@ -271,53 +137,174 @@ noremap L $
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 
-"Smart way to move between windows 分屏窗口移动
+" Smart way to move between windows 分屏窗口移动
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
-Bundle 'junegunn/vim-easy-align'
-" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+" 映射切换buffer的键位
+nnoremap bh :bp<CR>
+nnoremap bl :bn<CR>
+
+" 复制粘贴快捷键
+vmap <C-c> :w !pbcopy<cr><cr>
+nmap <C-v> :r !pbpaste<cr><cr>
+
+" Bbye设置
+" 由于原生的:bd在删除当前buffer时会将整个窗口关闭，故使用Bbye的:Bd
+nnoremap bd :Bd<CR>
+
+nnoremap <leader>l @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR> "空格控制折叠"
+
+runtime! macros/matchit.vim
+
+function! InsertTabWrapper()
+  let col = col('.') - 1
+  if !col || getline('.')[col - 1] =~ '\s'
+    return "\<Tab>"
+  else
+    return "\<C-n>"
+  endif
+endfunction
+inoremap <Tab>   <C-r>=InsertTabWrapper()<CR>
+inoremap <S-Tab> <C-p>
+
+nnoremap <leader><leader>   <c-^>
+nnoremap <silent> <leader>w <C-w>v<C-w>l
+nnoremap <silent> <leader>d :noh<CR>
+nnoremap <silent> <leader>q :q<CR>
+nnoremap <silent> <leader>b :Tagbar<CR>
+nnoremap <silent> <leader>cl :VimShell<CR>
+nnoremap <silent> <leader>u :UndotreeToggle<CR>
+
+function! MyToggleNERDTreeFind()
+  if g:NERDTree.IsOpen()
+    NERDTreeClose
+  else
+    NERDTreeFind
+  endif
+endfunction
+noremap <silent> <leader>t :call MyToggleNERDTreeFind()<CR>
+
+function! s:ZoomToggle() abort
+  if exists('t:zoomed') && t:zoomed
+    execute t:zoom_winrestcmd
+    let t:zoomed = 0
+  else
+    let t:zoom_winrestcmd = winrestcmd()
+    resize
+    vertical resize
+    let t:zoomed = 1
+  endif
+endfunction
+command! ZoomToggle call s:ZoomToggle()
+nnoremap <silent> <leader>o :ZoomToggle<CR>
+
 vmap <Enter> <Plug>(EasyAlign)
-" " Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
+nmap ga      <Plug>(EasyAlign)
 
-au BufRead,BufNewFile *.go set filetype=go 
-Bundle 'fatih/vim-go'
-let g:go_fmt_command = "goimports"
-let g:go_fmt_autosave = 1
-Bundle 'majutsushi/tagbar'
-nmap <F8> :TagbarToggle<CR>
-let g:tagbar_type_go = {
-    \ 'ctagstype' : 'go',
-    \ 'kinds'     : [
-        \ 'p:package',
-        \ 'i:imports:1',
-        \ 'c:constants',
-        \ 'v:variables',
-        \ 't:types',
-        \ 'n:interfaces',
-        \ 'w:fields',
-        \ 'e:embedded',
-        \ 'm:methods',
-        \ 'r:constructor',
-        \ 'f:functions'
-    \ ],
-    \ 'sro' : '.',
-    \ 'kind2scope' : {
-        \ 't' : 'ctype',
-        \ 'n' : 'ntype'
-    \ },
-    \ 'scope2kind' : {
-        \ 'ctype' : 't',
-        \ 'ntype' : 'n'
-    \ },
-    \ 'ctagsbin'  : 'gotags',
-    \ 'ctagsargs' : '-sort -silent'
-\ }
+let g:vimshell_editor_command='/usr/local/bin/vim'
 
-" theme主题
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" unite
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:unite_source_history_yank_enable = 1
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+nnoremap <C-p>     :<C-u>Unite -start-insert file_rec/async:!<CR>
+nnoremap <leader>f :<C-u>Unite -start-insert file_rec/async:!<CR>
+nnoremap <Leader>s :<C-u>Unite -auto-preview grep:.<CR>
+nnoremap <leader>e :<C-u>Unite  buffer bookmark<CR>
+nnoremap <leader>r :<C-u>Unite  file_mru<CR>
+nnoremap <leader>y :<C-u>Unite  history/yank<CR>
+autocmd FileType unite call s:unite_settings()
+function! s:unite_settings()
+  set number
+  imap <buffer> <C-j> <Plug>(unite_select_next_line)
+  imap <buffer> <C-k> <Plug>(unite_select_previous_line)
+endfunction
+if executable('ag')
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_default_opts =
+    \ '-i --line-numbers --nocolor --nogroup --hidden --ignore ' .
+    \  '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
+  let g:unite_source_grep_recursive_opt = ''
+  let g:unite_source_rec_async_command =
+    \ 'ag --follow --nocolor --nogroup --hidden -g ""'
+endif
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" neocomplete
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#sources#syntax#min_keyword_length = 2
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return neocomplete#close_popup() . "\<CR>"
+endfunction
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <C-l> <C-x><C-o>
+inoremap <expr><BS>  neocomplete#smart_close_popup()."\<C-h>"
+autocmd FileType ruby       setlocal omnifunc=rubycomplete#Complete
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType html       setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType css        setlocal omnifunc=csscomplete#CompleteCSS
+function! Multiple_cursors_before()
+  if exists(':NeoCompleteLock')==2
+    exe 'NeoCompleteLock'
+  endif
+endfunction
+function! Multiple_cursors_after()
+  if exists(':NeoCompleteUnlock')==2
+    exe 'NeoCompleteUnlock'
+  endif
+endfunction
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" neosnippet
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:neosnippet#disable_runtime_snippets = { "_": 1, }
+let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
+xmap <C-k> <Plug>(neosnippet_expand_target)
+imap <expr><C-j> neosnippet#expandable_or_jumpable() ?
+  \ "\<Plug>(neosnippet_expand_or_jump)"
+  \: "\<C-j>"
+smap <expr><C-j> neosnippet#expandable_or_jumpable() ?
+  \ "\<Plug>(neosnippet_expand_or_jump)"
+  \: "\<C-j>"
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" easymotion
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:EasyMotion_do_mapping = 0
+let g:EasyMotion_smartcase  = 1
+map f <Plug>(easymotion-bd-w)
+map F <Plug>(easymotion-sn)
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" tabline
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 开启tabline
+let g:airline#extensions#tabline#enabled = 1
+" tabline中buffer显示编号
+let g:airline#extensions#tabline#buffer_nr_show = 1
+" powerline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_theme             = 'solarized'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" colors
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 colorscheme monokai
 
 if has("gui_running")
