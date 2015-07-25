@@ -9,6 +9,7 @@
   ci = commit
   df = diff
   dd = diff
+  co = checkout
 [push]
 	default = matching
 [core]

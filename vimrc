@@ -1,13 +1,23 @@
+set rtp+=~/.vim/bundle/vundle/
+
+"filetype plugin indent on
+"syntax on
+syntax enable
+filetype plugin on
+
+call vundle#rc()
+
 " leader键
 let mapleader=","
 let g:mapleader=","
+
 " history存储容量
 set history=2000
+
 " 文件修改之后自动载入。
 set autoread
 set nocompatible               " be iMproved
 set encoding=utf8
-filetype off
 
 " 用于Macvim输入法切换问题
 "set noimdisable
@@ -20,23 +30,21 @@ set list listchars=tab:»·,trail:·
 " 复制粘贴快捷键
 vmap <C-c> :w !pbcopy<cr><cr>
 nmap <C-v> :r !pbpaste<cr><cr>
+
 " 左下角显示当前vim模式
 set showmode
 
+" 实现(、[、{、"、'  输入后自动补全右边部分，光标也会位于中间位置。
 "inoremap ( ()<ESC>i
 "inoremap [ []<ESC>i
 "inoremap { {}<ESC>i
 "inoremap < <><ESC>i
 "inoremap " ""<ESC>i
 "inoremap ' ''<ESC>i
-" 以上可以实现(、[、{、"、'  输入后自动补全右边部分，光标也会位于中间位置。
-
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
 
 " let Vundle manage Vundle
-" required! 
 Bundle 'gmarik/vundle'
+
 "可以在buffer的任何地方使用鼠标
 set mouse=n
 set selection=exclusive
@@ -56,14 +64,14 @@ set ruler               "右下角显示光标位置"
 set hlsearch        " 高亮显示搜索结果"
 set incsearch       " 及时输入查询
 set autochdir                   " 自动设置目录为正在编辑的文件所在的目录"
-" number line show 
 set nu
 
+" 设置在状态行显示的信息
 set statusline=\ %<%F[%1*%M%*%n%R%H]%=\ %y\ %0(%{&fileformat}\ %{&encoding}\ %c:%l/%L%)\ 
- " 设置在状态行显示的信息
 
 " 代码折叠
 set foldenable
+
 "" 折叠方法
 "" manual    手工折叠
 "" indent    使用缩进表示折叠
@@ -79,8 +87,6 @@ nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR> "空格控制
 " 缩进配置
 set smartindent   " Smart indent
 set autoindent    " 打开自动缩进
-" never add copyindent, case error   " copy the previous indentation on
-" autoindenting
 
 " tab相关变更
 set tabstop=2     " 设置Tab键的宽度        [等同的空格个数]
@@ -91,7 +97,6 @@ set smarttab      " insert tabs on the start of a line according to
 set expandtab     " 将Tab自动转化成空格    [需要输入真正的Tab键时，使用
 " Ctrl+V + Tab]
 set shiftround    " 缩进时，取整 use multiple of shiftwidth when indenting
-" with '<' and '>'
 
 " input source improve for gui vim
 if has("gui_running")
@@ -110,7 +115,7 @@ set cursorline
 
 set gfn=Monaco:h16
 if has("gui_running")
-  colorscheme desert
+  colorscheme molokai
   set bs=2
   set shell=/bin/zsh
 endif
@@ -160,8 +165,6 @@ map <c-o> :CtrlPBuffer<CR>
 
 Bundle "scrooloose/nerdcommenter.git"
 
-filetype plugin indent on     " required! 
-syntax on
 
 " sass highlight
 Bundle 'JulesWang/css.vim'
@@ -244,7 +247,7 @@ vmap ,} c{ <C-R>" }<ESC>
 vmap ,{ c{<C-R>"}<ESC>
 
 map ,` ysiw`
- 
+
 " 键盘映射，同时加入防止因winmanager和nerdtree冲突而导致空白页的语句
 nmap wm :if IsWinManagerVisible() <BAR> WMToggle<CR> <BAR> else <BAR> WMToggle<CR>:q<CR> endif <CR><CR>
 " 设置winmanager的宽度，默认为25
@@ -280,7 +283,39 @@ vmap <Enter> <Plug>(EasyAlign)
 " " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
-Bundle 'tpope/vim-cucumber.git'
+au BufRead,BufNewFile *.go set filetype=go 
+Bundle 'fatih/vim-go'
+let g:go_fmt_command = "goimports"
+let g:go_fmt_autosave = 1
+Bundle 'majutsushi/tagbar'
+nmap <F8> :TagbarToggle<CR>
+let g:tagbar_type_go = {
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [
+        \ 'p:package',
+        \ 'i:imports:1',
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'f:functions'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+    \ },
+    \ 'scope2kind' : {
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+    \ },
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
+\ }
 
 " theme主题
 colorscheme monokai
