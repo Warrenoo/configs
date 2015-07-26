@@ -2,17 +2,34 @@
 
 current_path="${PWD}"
 
-echo "Installing on-my-zhs"
+# Install
+echo "Installing on-my-zsh"
 if [[ -e $HOME/.oh-my-zsh ]]; then
-    echo "oh-my-zsh already exists" 
+    echo "oh-my-zsh already exists"
 else
     git clone https://github.com/robbyrussell/oh-my-zsh.git "$HOME/.oh-my-zsh"
 fi
-
 chsh -s `which zsh`
-rm  $HOME/.zshrc
+
+echo "Installing tmux"
+brew install tmux
+
+if [[ -e $HOME/.zshrc ]]; then
+  rm  $HOME/.zshrc
+fi
 ln -s $current_path/zshrc $HOME/.zshrc
-rm $HOME/.gitconfig
+
+if [[ -e $HOME/.gitconfig ]]; then
+  rm  $HOME/.gitconfig
+fi
 ln -s $current_path/gitconfig $HOME/.gitconfig
-rm $HOME/.vimrc
+
+if [[ -e $HOME/.vimrc ]]; then
+  rm  $HOME/.vimrc
+fi
 ln -s $current_path/vimrc $HOME/.vimrc
+
+if [[ -e $HOME/.tmux.conf ]]; then
+  rm  $HOME/.tmux.conf
+fi
+ln -s $current_path/tmux.conf $HOME/.tmux.conf
