@@ -175,7 +175,7 @@ nnoremap <silent> <leader>w <C-w>v<C-w>l
 nnoremap <silent> <leader>d :noh<CR>
 nnoremap <silent> <leader>q :q<CR>
 nnoremap <silent> <leader>b :Tagbar<CR>
-nnoremap <silent> <leader>cl :VimShell<CR>
+nnoremap <silent> <leader>l :VimShell<CR>
 nnoremap <silent> <leader>u :UndotreeToggle<CR>
 
 function! MyToggleNERDTreeFind()
