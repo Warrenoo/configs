@@ -77,6 +77,8 @@ set tags=./tags;$HOME
 set nobackup
 set noswapfile
 set history=2000
+" 退格键设置
+set backspace=indent,eol,start
 " set autochdir                   " 自动设置目录为正在编辑的文件所在的目录
 " 设置在状态行显示的信息
 set statusline=\ %<%F[%1*%M%*%n%R%H]%=\ %y\ %0(%{&fileformat}\ %{&encoding}\ %c:%l/%L%)\ 
