@@ -45,6 +45,7 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'fatih/vim-go'
 Plugin 'moll/vim-bbye.git'
 Plugin 'vim-scripts/The-NERD-Commenter'
+Plugin 'dbakker/vim-projectroot'
 call vundle#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -211,9 +212,9 @@ let g:vimshell_editor_command='/usr/local/bin/vim'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:unite_source_history_yank_enable = 1
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
-nnoremap <C-p>     :<C-u>Unite -start-insert file_rec/async:!<CR>
-nnoremap <leader>f :<C-u>Unite -start-insert file_rec/async:!<CR>
-nnoremap <Leader>s :<C-u>Unite -auto-preview grep:.<CR>
+nnoremap <C-p>     :call Unite_ctrlp()<cr>
+nnoremap <leader>f :call Unite_ctrlp()<CR>
+nnoremap <Leader>s :call Unite_ctrls()<CR>
 nnoremap <leader>e :<C-u>Unite  buffer bookmark<CR>
 nnoremap <leader>r :<C-u>Unite  file_mru<CR>
 nnoremap <leader>y :<C-u>Unite  history/yank<CR>
@@ -232,6 +233,12 @@ if executable('ag')
   let g:unite_source_rec_async_command =
     \ 'ag --follow --nocolor --nogroup --hidden -g ""'
 endif
+function! Unite_ctrlp()
+  execute ':Unite  -buffer-name=files -start-insert buffer file_rec/async:'.ProjectRootGuess().'/'
+endfunction
+function! Unite_ctrls()
+  execute ':Unite -auto-preview grep:'.ProjectRootGuess().'/'
+endfunction
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
