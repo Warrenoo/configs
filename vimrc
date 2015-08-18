@@ -46,6 +46,8 @@ Plugin 'fatih/vim-go'
 Plugin 'moll/vim-bbye.git'
 Plugin 'vim-scripts/The-NERD-Commenter'
 Plugin 'dbakker/vim-projectroot'
+Plugin 'luochen1990/rainbow'
+Plugin 'ctrlpvim/ctrlp.vim'
 call vundle#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -209,12 +211,21 @@ nmap ga      <Plug>(EasyAlign)
 
 let g:vimshell_editor_command='/usr/local/bin/vim'
 
+" 彩虹括号
+let g:rainbow_active = 0
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" CtrlP
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " unite
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:unite_source_history_yank_enable = 1
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
-nnoremap <C-p>     :call Unite_ctrlp()<cr>
+"nnoremap <C-p>     :call Unite_ctrlp()<cr>
 nnoremap <leader>f :call Unite_ctrlp()<CR>
 nnoremap <Leader>s :call Unite_ctrls()<CR>
 nnoremap <leader>e :<C-u>Unite  buffer bookmark<CR>
