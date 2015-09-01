@@ -10,6 +10,7 @@
   df = diff
   dd = diff
   co = checkout
+  po = push origin
 [push]
 	default = matching
 [core]
