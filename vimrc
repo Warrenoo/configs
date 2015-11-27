@@ -47,6 +47,8 @@ Plugin 'moll/vim-bbye.git'
 Plugin 'vim-scripts/The-NERD-Commenter'
 Plugin 'dbakker/vim-projectroot'
 Plugin 'luochen1990/rainbow'
+Plugin 'ngmy/vim-rubocop'
+Plugin 'Shougo/neomru.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 call vundle#end()
 
@@ -84,7 +86,9 @@ set backspace=indent,eol,start
 " set autochdir                   " 自动设置目录为正在编辑的文件所在的目录
 " 设置在状态行显示的信息
 set statusline=\ %<%F[%1*%M%*%n%R%H]%=\ %y\ %0(%{&fileformat}\ %{&encoding}\ %c:%l/%L%)\ 
-
+" 代码检查
+let g:vimrubocop_keymap = 0
+nmap rc :RuboCop<CR>
 "可以在buffer的任何地方使用鼠标
 set mouse=n
 set selection=exclusive
