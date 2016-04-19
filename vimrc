@@ -50,6 +50,8 @@ Plugin 'luochen1990/rainbow'
 Plugin 'ngmy/vim-rubocop'
 Plugin 'Shougo/neomru.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'vim-scripts/c.vim'
+Plugin 'edvb54/catium.vim'
 call vundle#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -223,6 +225,10 @@ let g:rainbow_active = 0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
+
+" Bind C-t for Clear all cache and open CtrlP
+nnoremap <silent> <C-t> :ClearAllCtrlPCache<CR>\|:CtrlP<CR>
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " unite
