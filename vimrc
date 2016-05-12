@@ -12,6 +12,7 @@ Plugin 'Shougo/vimproc.vim'
 Plugin 'Shougo/vimshell.vim'
 Plugin 'Shougo/neocomplete.vim'
 Plugin 'Shougo/neosnippet'
+Plugin 'Rip-Rip/clang_complete'
 
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-fugitive'
@@ -52,6 +53,8 @@ Plugin 'Shougo/neomru.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'vim-scripts/c.vim'
 Plugin 'edvb54/catium.vim'
+Plugin 'Blackrush/vim-gocode'
+Plugin 'ervandew/supertab'
 call vundle#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -61,6 +64,8 @@ syntax on
 filetype plugin indent on
 compiler ruby
 scriptencoding utf-8
+
+let g:clang_use_library=1
 
 set autoindent
 set hlsearch
@@ -218,7 +223,7 @@ nmap ga      <Plug>(EasyAlign)
 let g:vimshell_editor_command='/usr/local/bin/vim'
 
 " 彩虹括号
-let g:rainbow_active = 0
+let g:rainbow_active = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CtrlP

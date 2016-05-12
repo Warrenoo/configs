@@ -2,6 +2,7 @@
 
 export ZSH=$HOME/.oh-my-zsh
 export GOROOT=/usr/local/go
+export WORKSPACE=$HOME/Dropbox/workspace
 export GOPATH=$HOME/go
 export PATH=$PATH:$HOME/.rbenv/bin:/usr/local/sbi:$GOPATH/bin:/usr/local/nginx/sbin
 export LD_LIBRARY_PATH=$HOME/lib
@@ -17,7 +18,14 @@ alias @vpn="open ~/Library/Mobile\ Documents/com\~apple\~ScriptEditor2/Documents
 alias @rvpn="vpn-disconnect & ps -ef | grep VPN-RELOAD | grep -v grep | cut -c 7-15 | xargs kill -9"
 alias druby="docker run -it --rm hub.caishuo.com/ruby ruby"
 
+
+tmp_status=$(docker-machine status default)
+if [ $tmp_status != "Running" ]; then
+  docker-machine start default
+fi
+
 eval "$(docker-machine env default)"
+function dexec() {  docker exec -it $1 /bin/bash }
 #export DOCKER_TLS_VERIFY=1
 #export DOCKER_HOST=tcp://192.168.59.103:2376
 #export DOCKER_CERT_PATH=/Users/warrenoo/.boot2docker/certs/boot2docker-vm
